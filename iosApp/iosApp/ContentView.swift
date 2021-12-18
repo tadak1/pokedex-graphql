@@ -6,7 +6,9 @@ struct ContentView: View {
 	var body: some View {
 		Text(greet)
         Button(action: {
-            pokemons()
+            Task {
+                print(await getMediaPage())
+            }
         }){
             Text(greet)
         }
@@ -19,9 +21,11 @@ struct ContentView_Previews: PreviewProvider {
 	}
 }
 
-func pokemons() {
-    let pokemon = PokemonClient().getPokemons(completionHandler: { pokemons, err in
-        print(pokemons)
-        
-    })
+func getMediaPage() async -> [GetPagesQuery.Medium]? {
+    do {
+        return try await ExampleAniListClient().getMediaPage()
+    } catch {
+        print(error)
+        return []
+    }
 }

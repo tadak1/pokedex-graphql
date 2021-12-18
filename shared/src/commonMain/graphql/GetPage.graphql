@@ -1,0 +1,15 @@
+query GetPages {
+  page: Page(page: 0, perPage: 10) {
+      media {
+          id
+          title {
+              native
+              english
+          }
+          genres
+          coverImage {
+              medium
+          }
+      }
+  }
+}
