@@ -6,7 +6,7 @@ plugins {
 android {
     compileSdk = 31
     defaultConfig {
-        applicationId = "com.example.pokedexgraphql.android"
+        applicationId = "com.example.animegraphql.android"
         minSdk = 26
         targetSdk = 31
         versionCode = 1

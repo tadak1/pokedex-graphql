@@ -6,6 +6,6 @@ pluginManagement {
     }
 }
 
-rootProject.name = "pokedex-graphql"
+rootProject.name = "anime-graphql"
 include(":androidApp")
 include(":shared")

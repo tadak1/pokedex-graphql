@@ -1,11 +1,12 @@
-package com.example.pokedexgraphql.android
+package com.example.animegraphql.android
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import com.example.pokedexgraphql.Greeting
+import com.example.animegraphql.Greeting
 import android.widget.TextView
-import com.example.pokedexgraphql.PokemonClient
+import com.example.animegraphql.ExampleAniListClient
+import com.example.animegraphql.android.R
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -20,8 +21,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         GlobalScope.launch {
-            val result = PokemonClient().getPokemons()
-            Log.d("pokemon", result!!)
+            val result = ExampleAniListClient().getMediaPage()
+            Log.d("pokemon", result!!.toString())
         }
 
         val tv: TextView = findViewById(R.id.text_view)

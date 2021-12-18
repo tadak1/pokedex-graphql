@@ -1,4 +1,4 @@
-package com.example.pokedexgraphql
+package com.example.animegraphql
 
 import platform.UIKit.UIDevice
 

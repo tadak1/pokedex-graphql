@@ -1,6 +1,4 @@
-package com.example.pokedexgraphql
-
-import com.apollographql.apollo3.ApolloClient
+package com.example.animegraphql
 
 class Greeting {
     fun greeting(): String {

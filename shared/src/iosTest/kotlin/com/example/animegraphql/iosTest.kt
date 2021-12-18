@@ -1,4 +1,4 @@
-package com.example.pokedexgraphql
+package com.example.animegraphql
 
 import kotlin.test.Test
 import kotlin.test.assertTrue

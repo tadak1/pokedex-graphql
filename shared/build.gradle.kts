@@ -8,7 +8,7 @@ plugins {
 version = "1.0"
 
 apollo {
-    packageName.set("com.example.pokedexgraphql")
+    packageName.set("com.example.animegraphql")
 }
 
 kotlin {
