@@ -3,10 +3,10 @@ package com.example.animegraphql
 import org.junit.Assert.assertTrue
 import org.junit.Test
 
-class AndroidGreetingTest {
+class AndroidSharedPreferenceTest {
 
     @Test
     fun testExample() {
-        assertTrue("Check Android is mentioned", Greeting().greeting().contains("Android"))
+        assertTrue("Check Android is mentioned", SharedPreference().greeting().contains("Android"))
     }
 }

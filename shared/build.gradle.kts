@@ -32,6 +32,7 @@ kotlin {
             dependencies {
                 implementation("com.apollographql.apollo3:apollo-runtime:3.0.0-rc03")
                 implementation("com.apollographql.apollo3:apollo-normalized-cache-sqlite:3.0.0-rc03")
+                implementation("com.apollographql.apollo3:apollo-normalized-cache:3.0.0-rc03")
             }
         }
         val commonTest by getting {
@@ -40,7 +41,11 @@ kotlin {
                 implementation(kotlin("test-annotations-common"))
             }
         }
-        val androidMain by getting
+        val androidMain by getting {
+            dependencies{
+                implementation("androidx.datastore:datastore-preferences:1.0.0")
+            }
+        }
         val androidTest by getting {
             dependencies {
                 implementation(kotlin("test-junit"))

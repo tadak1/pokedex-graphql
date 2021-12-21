@@ -3,16 +3,15 @@ package com.example.animegraphql.android
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import com.example.animegraphql.Greeting
+import com.example.animegraphql.SharedPreference
 import android.widget.TextView
 import com.example.animegraphql.ExampleAniListClient
-import com.example.animegraphql.android.R
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 fun greet(): String {
-    return Greeting().greeting()
+    return SharedPreference().greeting()
 }
 
 class MainActivity : AppCompatActivity() {

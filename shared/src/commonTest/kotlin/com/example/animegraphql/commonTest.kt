@@ -3,10 +3,10 @@ package com.example.animegraphql
 import kotlin.test.Test
 import kotlin.test.assertTrue
 
-class CommonGreetingTest {
+class CommonSharedPreferenceTest {
 
     @Test
     fun testExample() {
-        assertTrue(Greeting().greeting().contains("Hello"), "Check 'Hello' is mentioned")
+        assertTrue(SharedPreference().greeting().contains("Hello"), "Check 'Hello' is mentioned")
     }
 }
