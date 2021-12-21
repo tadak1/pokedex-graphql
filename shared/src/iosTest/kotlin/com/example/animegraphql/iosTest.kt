@@ -7,6 +7,6 @@ class IosGreetingTest {
 
     @Test
     fun testExample() {
-        assertTrue(SharedPreference().greeting().contains("iOS"), "Check iOS is mentioned")
+        assertTrue(PreferencesManager().greeting().contains("iOS"), "Check iOS is mentioned")
     }
 }

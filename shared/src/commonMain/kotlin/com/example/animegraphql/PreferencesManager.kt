@@ -1,6 +1,6 @@
 package com.example.animegraphql
 
-expect class SharedPreference {
+expect class PreferencesManager {
     fun getBool(key: String): Boolean
     fun setBool(key: String, value: Boolean)
     fun getInt(key: String): Long

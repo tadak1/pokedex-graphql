@@ -7,6 +7,6 @@ class CommonSharedPreferenceTest {
 
     @Test
     fun testExample() {
-        assertTrue(SharedPreference().greeting().contains("Hello"), "Check 'Hello' is mentioned")
+        assertTrue(PreferencesManager().greeting().contains("Hello"), "Check 'Hello' is mentioned")
     }
 }

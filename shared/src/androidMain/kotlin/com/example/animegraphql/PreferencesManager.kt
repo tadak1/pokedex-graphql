@@ -3,7 +3,7 @@ package com.example.animegraphql
 import android.content.Context
 import android.content.SharedPreferences
 
-actual class SharedPreference constructor(context: Context) {
+actual class PreferencesManager constructor(context: Context) {
     private val sharedPreference: SharedPreferences =
         context.getSharedPreferences("SharedPreferences", Context.MODE_PRIVATE)
 
@@ -50,5 +50,4 @@ actual class SharedPreference constructor(context: Context) {
             .putString(key, value)
             .apply()
     }
-
 }

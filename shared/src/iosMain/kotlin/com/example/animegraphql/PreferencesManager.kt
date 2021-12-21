@@ -3,7 +3,7 @@ package com.example.animegraphql
 import platform.Foundation.NSUserDefaults
 import platform.Foundation.setValue
 
-actual class SharedPreference {
+actual class PreferencesManager {
     actual fun getBool(key: String): Boolean {
         return NSUserDefaults.standardUserDefaults().boolForKey(key)
     }
@@ -33,7 +33,6 @@ actual class SharedPreference {
     }
 
     actual fun setString(key: String, value: String) {
-        return NSUserDefaults.standardUserDefaults().setValue(value, key)
+        return NSUserDefaults.standardUserDefaults().setValue(value, forKey =  key)
     }
-
 }
