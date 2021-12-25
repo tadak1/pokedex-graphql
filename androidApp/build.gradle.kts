@@ -25,5 +25,6 @@ dependencies {
     implementation("androidx.appcompat:appcompat:1.3.1")
     implementation("androidx.constraintlayout:constraintlayout:2.1.0")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2")
-
+    implementation("com.apollographql.apollo3:apollo-normalized-cache:3.0.0")
+    implementation("io.insert-koin:koin-android:3.1.4")
 }

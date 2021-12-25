@@ -1,16 +1,19 @@
 package com.example.animegraphql.repository
 
+import org.koin.core.component.inject
 import com.example.animegraphql.GetPagesQuery
-import com.example.animegraphql.PreferencesManager
 import com.example.animegraphql.apollo.AnimeListClient
+import com.example.animegraphql.apollo.AnimeListClientInterface
+import org.koin.core.component.KoinComponent
 
-class Repository constructor(
-    private val animeListClient: AnimeListClient,
-    private val preferencesManager: PreferencesManager
-) {
+interface MediaRepositoryInterface {
+    suspend fun fetchMedia(): List<GetPagesQuery.Medium>?
+}
 
-    suspend fun fetchMedia(): List<GetPagesQuery.Medium>? {
+class MediaRepository(
+    private val animeListClient: AnimeListClientInterface
+) : KoinComponent, MediaRepositoryInterface {
+    override suspend fun fetchMedia(): List<GetPagesQuery.Medium>? {
         return animeListClient.getMediaPage()
     }
-
 }

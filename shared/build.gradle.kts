@@ -2,7 +2,7 @@ plugins {
     kotlin("multiplatform")
     kotlin("native.cocoapods")
     id("com.android.library")
-    id("com.apollographql.apollo3").version("3.0.0-rc03")
+    id("com.apollographql.apollo3").version("3.0.0")
 }
 
 version = "1.0"
@@ -30,9 +30,10 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation("com.apollographql.apollo3:apollo-runtime:3.0.0-rc03")
-                implementation("com.apollographql.apollo3:apollo-normalized-cache-sqlite:3.0.0-rc03")
-                implementation("com.apollographql.apollo3:apollo-normalized-cache:3.0.0-rc03")
+                implementation("com.apollographql.apollo3:apollo-runtime:3.0.0")
+                implementation("com.apollographql.apollo3:apollo-normalized-cache-sqlite:3.0.0")
+                implementation("com.apollographql.apollo3:apollo-normalized-cache:3.0.0")
+                api( "io.insert-koin:koin-core:3.1.4")
             }
         }
         val commonTest by getting {
