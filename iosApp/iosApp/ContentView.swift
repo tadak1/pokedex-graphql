@@ -1,30 +1,30 @@
-import SwiftUI
 import Kingfisher
 import shared
+import SwiftUI
 
 @MainActor
 struct ContentView: View {
     @StateObject var viewModel = MediaViewModel(repository: MediaRepository())
-    
-	var body: some View {
+
+    var body: some View {
         TabView {
             NavigationView {
                 ScrollView {
                     LazyVStack {
                         Text("Test")
                         if viewModel.isLoading {
-                            ProgressView()                            
+                            ProgressView()
                         } else {
                             ForEach(viewModel.mediaList, id: \.self) { media in
                                 KFImage.url(
-                                     URL(string: media.coverImage?.large ?? ""),
+                                    URL(string: media.coverImage?.large ?? ""),
                                     cacheKey: media.coverImage?.large ?? ""
                                 )
                             }
                         }
                         Button(action: {
                             Task {
-                               print(await viewModel.fetch())
+                                print(await viewModel.fetch())
                             }
                         }) {
                             Text("fetch")
@@ -35,28 +35,26 @@ struct ContentView: View {
                 Label("Test", systemImage: "location")
             }
         }
-	}
+    }
 }
 
 struct ContentView_Previews: PreviewProvider {
-	static var previews: some View {
-		ContentView()
-	}
+    static var previews: some View {
+        ContentView()
+    }
 }
-
-
 
 @MainActor
 class MediaViewModel: ObservableObject {
     private let repository: MediaRepository
-    
-    @Published var isLoading: Bool  = false
+
+    @Published var isLoading: Bool = false
     @Published var mediaList: [GetPagesQuery.Medium] = []
-    
-    init(repository: MediaRepository){
+
+    init(repository: MediaRepository) {
         self.repository = repository
     }
-    
+
     func fetch() async {
         defer {
             isLoading = false

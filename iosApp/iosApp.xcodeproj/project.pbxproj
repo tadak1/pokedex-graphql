@@ -14,6 +14,7 @@
 		A7E2A41D725F2F4896691A8D /* Pods_iosApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76C97B1BCB40BDE4F9ACD12A /* Pods_iosApp.framework */; };
 		E940861827770C7D00949351 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E940861727770C7D00949351 /* AppDelegate.swift */; };
 		E940861E27775D8300949351 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = E940861D27775D8300949351 /* Kingfisher */; };
+		E940862327775F1E00949351 /* Empty.swift in Sources */ = {isa = PBXBuildFile; fileRef = E940862227775F1E00949351 /* Empty.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,8 @@
 		76C97B1BCB40BDE4F9ACD12A /* Pods_iosApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iosApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A06FE3DB6310E8CD8E6310F7 /* Pods-iosApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.debug.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.debug.xcconfig"; sourceTree = "<group>"; };
 		E940861727770C7D00949351 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		E940862027775EEC00949351 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
+		E940862227775F1E00949351 /* Empty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Empty.swift; sourceTree = "<group>"; };
 		EE67959B5C22659A96F3D6A5 /* Pods-iosApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.release.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -61,6 +64,7 @@
 		7555FF72242A565900829871 = {
 			isa = PBXGroup;
 			children = (
+				E940861F27775ECE00949351 /* BuildTools */,
 				7555FF7D242A565900829871 /* iosApp */,
 				7555FF7C242A565900829871 /* Products */,
 				C2C7B5DD30B352DF3E6C94C0 /* Pods */,
@@ -98,6 +102,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		E940861F27775ECE00949351 /* BuildTools */ = {
+			isa = PBXGroup;
+			children = (
+				E940862027775EEC00949351 /* Package.swift */,
+				E940862227775F1E00949351 /* Empty.swift */,
+			);
+			path = BuildTools;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -106,6 +119,8 @@
 			buildConfigurationList = 7555FFA5242A565B00829871 /* Build configuration list for PBXNativeTarget "iosApp" */;
 			buildPhases = (
 				445A72CA674C2EEB6BFF9830 /* [CP] Check Pods Manifest.lock */,
+				E940862427775F3500949351 /* Run Format */,
+				E940862527775F6A00949351 /* Run Lint */,
 				7555FF77242A565900829871 /* Sources */,
 				7555FF79242A565900829871 /* Resources */,
 				4636AA1609688B8805F4E629 /* Frameworks */,
@@ -193,6 +208,42 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		E940862427775F3500949351 /* Run Format */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run Format";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\ncd BuildTools\nSDKROOT=(xcrun --sdk macosx --show-sdk-path)\n#swift package update #Uncomment this line temporarily to update the version used to the latest matching your BuildTools/Package.swift file\nswift run -c release swiftformat \"$SRCROOT\"\n";
+		};
+		E940862527775F6A00949351 /* Run Lint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run Lint";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd BuildTools\nSDKROOT=macosx\n \ncp $SRCROOT/.swiftlint.yml ./\nswift run -c release swiftlint \nrm .swiftlint.yml\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -201,6 +252,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E940861827770C7D00949351 /* AppDelegate.swift in Sources */,
+				E940862327775F1E00949351 /* Empty.swift in Sources */,
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
 			);
