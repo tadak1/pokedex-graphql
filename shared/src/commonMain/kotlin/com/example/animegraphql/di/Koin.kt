@@ -14,6 +14,10 @@ fun initKoin(appDeclaration: KoinAppDeclaration = {}) = startKoin {
     modules(commonModule())
 }
 
+fun initKoinForIOS() {
+    initKoin()
+}
+
 fun commonModule() = module {
     single {
         createApolloClient()
@@ -22,6 +26,6 @@ fun commonModule() = module {
         AnimeListClient(get())
     }
     single<MediaRepositoryInterface> {
-        MediaRepository(get())
+        MediaRepository()
     }
 }
