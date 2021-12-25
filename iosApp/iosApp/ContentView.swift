@@ -1,5 +1,5 @@
 import SwiftUI
-import SDWebImageSwiftUI
+import Kingfisher
 import shared
 
 @MainActor
@@ -16,7 +16,10 @@ struct ContentView: View {
                             ProgressView()                            
                         } else {
                             ForEach(viewModel.mediaList, id: \.self) { media in
-                                WebImage(url: URL(string: media.coverImage?.large ?? ""))
+                                KFImage.url(
+                                     URL(string: media.coverImage?.large ?? ""),
+                                    cacheKey: media.coverImage?.large ?? ""
+                                )
                             }
                         }
                         Button(action: {
