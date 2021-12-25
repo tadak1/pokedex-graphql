@@ -1,4 +1,5 @@
 import SwiftUI
+import SDWebImageSwiftUI
 import shared
 
 @MainActor
@@ -8,14 +9,23 @@ struct ContentView: View {
 	var body: some View {
         TabView {
             NavigationView {
-                VStack {
-                    Text("Test")
-                    Button(action: {
-                        Task {
-                           print(await viewModel.fetch())
+                ScrollView {
+                    LazyVStack {
+                        Text("Test")
+                        if viewModel.isLoading {
+                            ProgressView()                            
+                        } else {
+                            ForEach(viewModel.mediaList, id: \.self) { media in
+                                WebImage(url: URL(string: media.coverImage?.large ?? ""))
+                            }
                         }
-                    }) {
-                        Text("fetch")
+                        Button(action: {
+                            Task {
+                               print(await viewModel.fetch())
+                            }
+                        }) {
+                            Text("fetch")
+                        }
                     }
                 }
             }.tabItem {
@@ -33,19 +43,28 @@ struct ContentView_Previews: PreviewProvider {
 
 
 
+@MainActor
 class MediaViewModel: ObservableObject {
     private let repository: MediaRepository
+    
+    @Published var isLoading: Bool  = false
+    @Published var mediaList: [GetPagesQuery.Medium] = []
     
     init(repository: MediaRepository){
         self.repository = repository
     }
     
-    func fetch() async -> [GetPagesQuery.Medium]? {
+    func fetch() async {
+        defer {
+            isLoading = false
+        }
         do {
-            return try await repository.fetchMedia()
+            isLoading = true
+            if let fetchedMediaList = try await repository.fetchMedia() {
+                mediaList = fetchedMediaList
+            }
         } catch {
             print(error)
-            return nil
         }
     }
 }
